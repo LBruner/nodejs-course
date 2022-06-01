@@ -1,17 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const shopRoutes = require('./routes/shop');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.post('/home',(req,_)=>{
-    console.log(req.body)
-})
+app.use(('/home'),shopRoutes)
+app.use(('/admin'),adminRoutes)
 
-app.get('/home', (req, res) => {
-    res.send('OLA')
-})
 
 const port = 3000;
 app.listen(port, () => {
